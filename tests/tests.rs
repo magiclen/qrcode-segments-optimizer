@@ -34,9 +34,7 @@ fn optimize_url() {
     let url = Url::parse(url).unwrap();
 
     let optimized_matrix = qrcode_generator::to_matrix_from_segments(
-        qrcode_segments_optimizer::make_segments_from_url(&url, ecc)
-            .unwrap()
-            .as_slice(),
+        qrcode_segments_optimizer::make_segments_from_url(&url, ecc).unwrap().as_slice(),
         ecc,
     )
     .unwrap();
@@ -55,9 +53,7 @@ fn optimize_email() {
     let email = Email::from_str(email).unwrap();
 
     let optimized_matrix = qrcode_generator::to_matrix_from_segments(
-        qrcode_segments_optimizer::make_segments_from_email(&email, ecc)
-            .unwrap()
-            .as_slice(),
+        qrcode_segments_optimizer::make_segments_from_email(&email, ecc).unwrap().as_slice(),
         ecc,
     )
     .unwrap();

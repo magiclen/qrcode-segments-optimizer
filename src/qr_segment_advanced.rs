@@ -16,11 +16,8 @@ const MODE_TYPES: [QrSegmentMode; 4] = [
     QrSegmentMode::Kanji,
 ];
 #[cfg(not(feature = "kanji"))]
-const MODE_TYPES: [QrSegmentMode; 3] = [
-    QrSegmentMode::Byte,
-    QrSegmentMode::Alphanumeric,
-    QrSegmentMode::Numeric,
-];
+const MODE_TYPES: [QrSegmentMode; 3] =
+    [QrSegmentMode::Byte, QrSegmentMode::Alphanumeric, QrSegmentMode::Numeric];
 
 #[cfg(feature = "kanji")]
 const NUM_MODES: usize = 4;
