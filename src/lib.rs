@@ -65,6 +65,7 @@ extern crate lazy_static_include;
 pub mod models;
 mod qr_segment_advanced;
 
+use core::fmt::Write;
 use core::str::from_utf8_unchecked;
 
 use alloc::borrow::Cow;
@@ -182,6 +183,10 @@ pub fn make_segments_from_url(url: &Url, ecc: QrCodeEcc) -> Result<Vec<QrSegment
         Cow::Owned(mut s) => {
             if !host_done {
                 s.push_str(url.host_str().unwrap());
+            }
+
+            if let Some(port) = url.port() {
+                s.write_fmt(format_args!(":{}", port)).unwrap();
             }
 
             s.push_str(url.path());
