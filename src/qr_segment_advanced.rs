@@ -158,7 +158,7 @@ fn compute_character_modes(code_points: &[char], version: Version) -> Vec<QrSegm
             cur_costs[1] = prev_costs[1] + 33; // 5.5 bits per alphanumeric char
             char_modes[i][1] = Some(MODE_TYPES[1]);
         }
-        if '0' <= c && c <= '9' {
+        if ('0'..='9').contains(&c) {
             // Is numeric
             cur_costs[2] = prev_costs[2] + 20; // 3.33 bits per digit
             char_modes[i][2] = Some(MODE_TYPES[2]);
@@ -349,7 +349,7 @@ fn get_num_raw_data_modules(ver: Version) -> usize {
             result -= 36;
         }
     }
-    assert!(208 <= result && result <= 29648);
+    assert!((208..=29648).contains(&result));
     result
 }
 

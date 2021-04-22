@@ -1,6 +1,6 @@
 [package]
 name = "qrcode-segments-optimizer"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 repository = "https://github.com/magiclen/qrcode-segments-optimizer"
@@ -11,10 +11,6 @@ description = "This library is used for optimizing the QR code segments."
 readme = "README.md"
 license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "data/unicode_to_qr_kanji.json"]
-
-[badges.travis-ci]
-repository = "magiclen/qrcode-segments-optimizer"
-branch = "master"
 
 [dependencies]
 qrcode-generator = "4.0.1"
