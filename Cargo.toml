@@ -3,6 +3,7 @@ name = "qrcode-segments-optimizer"
 version = "0.0.3"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
+publish = false
 repository = "https://github.com/magiclen/qrcode-segments-optimizer"
 homepage = "https://magiclen.org/qrcode-generator"
 keywords = ["qrcode"]
