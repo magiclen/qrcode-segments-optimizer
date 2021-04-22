@@ -1,6 +1,6 @@
 [package]
 name = "qrcode-segments-optimizer"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 publish = false
@@ -14,11 +14,10 @@ license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "data/unicode_to_qr_kanji.json"]
 
 [dependencies]
-qrcode-generator = "4.0.1"
+qrcode-generator = "4.1"
 url = "2"
 cow-utils = "0.1"
 
-lazy-static-include = { version = "3", optional = true }
 validators = { version = "0.22", optional = true }
 
 [dependencies.validators-derive]
@@ -32,6 +31,6 @@ slash-formatter = "3"
 [features]
 default = ["std"]
 std = ["qrcode-generator/std", "validators-derive/std", "validators-derive/email", "validators"]
-kanji = ["std", "lazy-static-include"]
+kanji = ["std"]
 
 test-image = ["std", "qrcode-generator/image"]

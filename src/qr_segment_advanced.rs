@@ -75,10 +75,8 @@ static NUM_ERROR_CORRECTION_BLOCKS: [[i8; 41]; 4] = [
 ];
 
 #[cfg(feature = "kanji")]
-lazy_static_include_array! {
-    /// doc
-    pub(crate) UNICODE_TO_QR_KANJI: [i16; 1 << 16] => "data/unicode_to_qr_kanji.json",
-}
+pub(crate) static UNICODE_TO_QR_KANJI: [i16; 1 << 16] =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/unicode_to_qr_kanji.json"));
 
 /// Returns a list of zero or more segments to represent the specified Unicode text string.
 pub(crate) fn make_segments_optimally(

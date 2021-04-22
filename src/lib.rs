@@ -58,10 +58,6 @@ extern crate validators;
 extern crate cow_utils;
 extern crate url;
 
-#[cfg(feature = "kanji")]
-#[macro_use]
-extern crate lazy_static_include;
-
 pub mod models;
 mod qr_segment_advanced;
 
