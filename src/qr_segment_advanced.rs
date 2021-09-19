@@ -98,7 +98,7 @@ pub(crate) fn make_segments_optimally(
 
     for version in min_version..=max_version {
         if version == min_version || version == 10 || version == 27 {
-            segs = make_segments_optimally_at_version(&code_points, Version::new(version));
+            segs = make_segments_optimally_at_version(code_points, Version::new(version));
         }
         let version = Version::new(version);
 

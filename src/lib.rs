@@ -89,13 +89,8 @@ pub fn make_segments_from_str<S: AsRef<str>>(
 ) -> Result<Vec<QrSegment>, QRCodeError> {
     let chars: Vec<char> = text.as_ref().chars().collect();
 
-    qr_segment_advanced::make_segments_optimally(
-        chars.as_slice(),
-        ecc,
-        Version::MIN,
-        Version::MAX,
-    )
-    .ok_or(QRCodeError::DataTooLong)
+    qr_segment_advanced::make_segments_optimally(chars.as_slice(), ecc, Version::MIN, Version::MAX)
+        .ok_or(QRCodeError::DataTooLong)
 }
 
 /// Make segments from a url optimally.
