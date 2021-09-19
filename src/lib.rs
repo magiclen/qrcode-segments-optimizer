@@ -68,7 +68,7 @@ use alloc::borrow::Cow;
 use alloc::string::String;
 use alloc::vec::Vec;
 
-use qrcode_generator::qrcodegen::{QrCode_MAX_VERSION, QrCode_MIN_VERSION};
+use qrcode_generator::qrcodegen::Version;
 use qrcode_generator::{QRCodeError, QrCodeEcc, QrSegment};
 
 use cow_utils::CowUtils;
@@ -92,8 +92,8 @@ pub fn make_segments_from_str<S: AsRef<str>>(
     qr_segment_advanced::make_segments_optimally(
         chars.as_slice(),
         ecc,
-        QrCode_MIN_VERSION,
-        QrCode_MAX_VERSION,
+        Version::MIN,
+        Version::MAX,
     )
     .ok_or(QRCodeError::DataTooLong)
 }

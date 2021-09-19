@@ -14,7 +14,7 @@ license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "data/unicode_to_qr_kanji.json"]
 
 [dependencies]
-qrcode-generator = "4.1"
+qrcode-generator = "4.1.2"
 url = "2"
 cow-utils = "0.1"
 
