@@ -1,6 +1,6 @@
 [package]
 name = "qrcode-segments-optimizer"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 publish = false
@@ -18,10 +18,10 @@ qrcode-generator = "4.1.2"
 url = "2"
 cow-utils = "0.1"
 
-validators = { version = "0.22", optional = true }
+validators = { version = "0.23", optional = true }
 
 [dependencies.validators-derive]
-version = "0.22"
+version = "0.23"
 default-features = false
 optional = true
 
