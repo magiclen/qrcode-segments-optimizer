@@ -1,9 +1,9 @@
 use core::fmt::{self, Display, Formatter};
 use core::str::FromStr;
 
-use crate::validators::models::Host;
-use crate::validators::prelude::*;
-use crate::validators::EmailError;
+use validators::prelude::*;
+
+use validators_prelude::{EmailError, Host};
 
 #[derive(Debug, Clone, Validator)]
 #[validator(email)]

@@ -6,10 +6,6 @@ This library is used for optimizing the QR code segments.
 ## Examples
 
 ```rust
-extern crate qrcode_generator;
-extern crate qrcode_segments_optimizer;
-extern crate url;
-
 use qrcode_generator::QrCodeEcc;
 use url::Url;
 
@@ -30,33 +26,7 @@ let optimized_matrix = qrcode_generator::to_matrix_from_segments(
 
 assert!(optimized_matrix.len() < naive_matrix.len());
 ```
-
-## No Std
-
-Disable the default features to compile this crate without std.
-
-```toml
-[dependencies.qrcode-segments-optimizer]
-version = "*"
-default-features = false
-```
 */
-
-#![cfg_attr(not(feature = "std"), no_std)]
-
-#[macro_use]
-extern crate alloc;
-
-extern crate qrcode_generator;
-
-#[cfg(feature = "std")]
-#[macro_use]
-extern crate validators_derive;
-#[cfg(feature = "std")]
-extern crate validators;
-
-extern crate cow_utils;
-extern crate url;
 
 pub mod models;
 mod qr_segment_advanced;
@@ -64,9 +34,7 @@ mod qr_segment_advanced;
 use core::fmt::Write;
 use core::str::from_utf8_unchecked;
 
-use alloc::borrow::Cow;
-use alloc::string::String;
-use alloc::vec::Vec;
+use std::borrow::Cow;
 
 use qrcode_generator::qrcodegen::Version;
 use qrcode_generator::{QRCodeError, QrCodeEcc, QrSegment};
@@ -75,10 +43,8 @@ use cow_utils::CowUtils;
 
 use url::Url;
 
-#[cfg(feature = "std")]
 use validators::models::Host;
 
-#[cfg(feature = "std")]
 use models::Email;
 
 /// Make segments from a string slice optimally.
@@ -197,7 +163,6 @@ pub fn make_segments_from_url(url: &Url, ecc: QrCodeEcc) -> Result<Vec<QrSegment
     }
 }
 
-#[cfg(feature = "std")]
 /// Make segments from an email address optimally.
 #[inline]
 pub fn make_segments_from_email(

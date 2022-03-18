@@ -1,12 +1,7 @@
-extern crate qrcode_generator;
-extern crate qrcode_segments_optimizer;
-extern crate url;
-
 #[cfg(feature = "test-image")]
 #[macro_use]
 extern crate slash_formatter;
 
-#[cfg(feature = "std")]
 use core::str::FromStr;
 
 #[cfg(feature = "test-image")]
@@ -18,7 +13,6 @@ use qrcode_generator::QrCodeEcc;
 
 use url::Url;
 
-#[cfg(feature = "std")]
 use qrcode_segments_optimizer::models::Email;
 
 #[cfg(feature = "test-image")]
@@ -42,7 +36,6 @@ fn optimize_url() {
     assert!(optimized_matrix.len() < naive_matrix.len());
 }
 
-#[cfg(feature = "std")]
 #[test]
 fn optimize_email() {
     let email = "len@email.abcde.example.org";
@@ -81,7 +74,7 @@ fn url_to_png_to_file() {
     );
 }
 
-#[cfg(all(feature = "std", feature = "test-image"))]
+#[cfg(feature = "test-image")]
 #[test]
 fn email_to_png_to_file() {
     let email = "len@email.abcde.example.org";

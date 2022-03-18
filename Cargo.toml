@@ -1,36 +1,33 @@
 [package]
 name = "qrcode-segments-optimizer"
-version = "0.0.5"
+version = "0.0.6"
 authors = ["Magic Len <len@magiclen.org>"]
-edition = "2018"
+edition = "2021"
 publish = false
 repository = "https://github.com/magiclen/qrcode-segments-optimizer"
 homepage = "https://magiclen.org/qrcode-generator"
 keywords = ["qrcode"]
-categories = ["no-std", "encoding"]
+categories = ["encoding"]
 description = "This library is used for optimizing the QR code segments."
 readme = "README.md"
 license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "data/unicode_to_qr_kanji.json"]
 
 [dependencies]
-qrcode-generator = "4.1.2"
+qrcode-generator = "4.1.3"
 url = "2"
 cow-utils = "0.1"
 
-validators = { version = "0.23", optional = true }
-
-[dependencies.validators-derive]
-version = "0.23"
+[dependencies.validators]
+version = "0.24"
 default-features = false
-optional = true
+features = ["derive", "email"]
 
 [dev-dependencies]
 slash-formatter = "3"
 
 [features]
-default = ["std"]
-std = ["qrcode-generator/std", "validators-derive/std", "validators-derive/email", "validators"]
-kanji = ["std"]
+default = []
+kanji = []
 
-test-image = ["std", "qrcode-generator/image"]
+test-image = ["qrcode-generator/image"]

@@ -1,12 +1,9 @@
 // The algorithm is from https://github.com/nayuki/QR-Code-generator/pull/40/
 
-use alloc::string::String;
-use alloc::vec::Vec;
-
-use crate::qrcode_generator::qrcodegen::{QrCodeEcc, QrSegment, QrSegmentMode, Version};
+use qrcode_generator::qrcodegen::{QrCodeEcc, QrSegment, QrSegmentMode, Version};
 
 #[cfg(feature = "kanji")]
-use crate::qrcode_generator::qrcodegen::BitBuffer;
+use qrcode_generator::qrcodegen::BitBuffer;
 
 #[cfg(feature = "kanji")]
 const MODE_TYPES: [QrSegmentMode; 4] = [
@@ -202,6 +199,8 @@ fn compute_character_modes(code_points: &[char], version: Version) -> Vec<QrSegm
     let mut cur_mode = cur_mode.unwrap();
 
     let mut result = Vec::with_capacity(char_modes.len());
+
+    #[allow(clippy::uninit_vec)]
     unsafe {
         result.set_len(char_modes.len());
     }
