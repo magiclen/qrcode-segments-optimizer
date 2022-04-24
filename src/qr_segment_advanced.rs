@@ -245,10 +245,12 @@ fn split_into_segments(code_points: &[char], char_modes: &[QrSegmentMode]) -> Ve
                 result.push(QrSegment::make_bytes(&v));
             }
             QrSegmentMode::Numeric => {
-                result.push(QrSegment::make_numeric(s));
+                let s: String = s.iter().collect();
+                result.push(QrSegment::make_numeric(s.as_str()));
             }
             QrSegmentMode::Alphanumeric => {
-                result.push(QrSegment::make_alphanumeric(s));
+                let s: String = s.iter().collect();
+                result.push(QrSegment::make_alphanumeric(s.as_str()));
             }
             QrSegmentMode::Kanji => {
                 if cfg!(feature = "kanji") {
