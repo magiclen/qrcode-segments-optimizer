@@ -215,5 +215,5 @@ pub fn make_segments_from_email(
         }
     }
 
-    make_segments_from_str(&email.to_email_string(), ecc)
+    make_segments_from_str(email.to_email_string(), ecc)
 }
