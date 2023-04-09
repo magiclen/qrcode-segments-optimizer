@@ -1,9 +1,8 @@
 // The algorithm is from https://github.com/nayuki/QR-Code-generator/pull/40/
 
-use qrcode_generator::qrcodegen::{QrCodeEcc, QrSegment, QrSegmentMode, Version};
-
 #[cfg(feature = "kanji")]
 use qrcode_generator::qrcodegen::BitBuffer;
+use qrcode_generator::qrcodegen::{QrCodeEcc, QrSegment, QrSegmentMode, Version};
 
 #[cfg(feature = "kanji")]
 const MODE_TYPES: [QrSegmentMode; 4] = [
@@ -153,7 +152,7 @@ fn compute_character_modes(code_points: &[char], version: Version) -> Vec<QrSegm
             cur_costs[1] = prev_costs[1] + 33; // 5.5 bits per alphanumeric char
             char_modes[i][1] = Some(MODE_TYPES[1]);
         }
-        if ('0'..='9').contains(&c) {
+        if c.is_ascii_digit() {
             // Is numeric
             cur_costs[2] = prev_costs[2] + 20; // 3.33 bits per digit
             char_modes[i][2] = Some(MODE_TYPES[2]);
@@ -243,20 +242,20 @@ fn split_into_segments(code_points: &[char], char_modes: &[QrSegmentMode]) -> Ve
                 let s: String = s.iter().collect();
                 let v = s.into_bytes();
                 result.push(QrSegment::make_bytes(&v));
-            }
+            },
             QrSegmentMode::Numeric => {
                 let s: String = s.iter().collect();
                 result.push(QrSegment::make_numeric(s.as_str()));
-            }
+            },
             QrSegmentMode::Alphanumeric => {
                 let s: String = s.iter().collect();
                 result.push(QrSegment::make_alphanumeric(s.as_str()));
-            }
+            },
             QrSegmentMode::Kanji => {
                 if cfg!(feature = "kanji") {
                     result.push(make_kanji(s));
                 }
-            }
+            },
             _ => unreachable!(),
         }
 

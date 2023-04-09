@@ -9,24 +9,19 @@ jobs:
   rustfmt:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          profile: minimal
           toolchain: nightly
-          override: true
           components: rustfmt
-      - run: cargo fmt -- --check
+      - uses: actions-rust-lang/rustfmt@v1
 
   clippy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          profile: minimal
-          toolchain: nightly
-          override: true
           components: clippy
       - run: cargo clippy --all-targets --all-features -- -D warnings
 
@@ -39,29 +34,21 @@ jobs:
           - macos-latest
           - windows-latest
         toolchain:
+          - 1.61
           - stable
           - nightly
-    name: Test ${{ matrix.toolchain }} on ${{ matrix.os }}
+        features:
+          -
+          - --no-default-features
+          - --features test-image
+          - --features kanji
+          - --features kanji --features test-image
+    name: Test ${{ matrix.toolchain }} on ${{ matrix.os }} (${{ matrix.features }})
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          profile: minimal
           toolchain: ${{ matrix.toolchain }}
-          override: true
-      - run: cargo build
-      - run: cargo test
-      - run: cargo doc
-      - run: cargo build --no-default-features
-      - run: cargo test --no-default-features
-      - run: cargo doc --no-default-features
-      - run: cargo build --features test-image
-      - run: cargo test --features test-image
-      - run: cargo doc --features test-image
-      - run: cargo build --features kanji
-      - run: cargo test --features kanji
-      - run: cargo doc --features kanji
-      - run: cargo build --features kanji --features test-image
-      - run: cargo test --features kanji --features test-image
-      - run: cargo doc --features kanji --features test-image
+      - run: cargo test ${{ matrix.features }}
+      - run: cargo doc ${{ matrix.features }}

@@ -3,17 +3,14 @@
 extern crate slash_formatter;
 
 use core::str::FromStr;
-
 #[cfg(feature = "test-image")]
 use std::fs;
 #[cfg(feature = "test-image")]
 use std::path::Path;
 
 use qrcode_generator::QrCodeEcc;
-
-use url::Url;
-
 use qrcode_segments_optimizer::models::Email;
+use url::Url;
 
 #[cfg(feature = "test-image")]
 const FOLDER: &str = concat_with_file_separator!("tests", "data");

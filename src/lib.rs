@@ -31,21 +31,14 @@ assert!(optimized_matrix.len() < naive_matrix.len());
 pub mod models;
 mod qr_segment_advanced;
 
-use core::fmt::Write;
-use core::str::from_utf8_unchecked;
-
+use core::{fmt::Write, str::from_utf8_unchecked};
 use std::borrow::Cow;
 
-use qrcode_generator::qrcodegen::Version;
-use qrcode_generator::{QRCodeError, QrCodeEcc, QrSegment};
-
 use cow_utils::CowUtils;
-
-use url::Url;
-
-use validators::models::Host;
-
 use models::Email;
+use qrcode_generator::{qrcodegen::Version, QRCodeError, QrCodeEcc, QrSegment};
+use url::Url;
+use validators::models::Host;
 
 /// Make segments from a string slice optimally.
 #[inline]
@@ -136,7 +129,7 @@ pub fn make_segments_from_url(url: &Url, ecc: QrCodeEcc) -> Result<Vec<QrSegment
         Cow::Borrowed(qrcode_url) => {
             // nothing change
             make_segments_from_str(qrcode_url, ecc)
-        }
+        },
         Cow::Owned(mut s) => {
             if !host_done {
                 s.push_str(url.host_str().unwrap());
@@ -159,7 +152,7 @@ pub fn make_segments_from_url(url: &Url, ecc: QrCodeEcc) -> Result<Vec<QrSegment
             }
 
             make_segments_from_str(s.as_str(), ecc)
-        }
+        },
     }
 }
 
