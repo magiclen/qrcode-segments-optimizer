@@ -10,7 +10,6 @@ homepage = "https://magiclen.org/qrcode-generator"
 keywords = ["qrcode"]
 categories = ["encoding"]
 description = "This library is used for optimizing the QR code segments."
-readme = "README.md"
 license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "data/unicode_to_qr_kanji.json"]
 
