@@ -199,20 +199,21 @@ fn compute_character_modes(code_points: &[char], version: Version) -> Vec<QrSegm
 
     let mut result = Vec::with_capacity(char_modes.len());
 
-    #[allow(clippy::uninit_vec)]
-    unsafe {
-        result.set_len(char_modes.len());
-    }
+    let remaining = result.spare_capacity_mut();
 
     // Get optimal mode for each code point by tracing backwards
     for i in (0..char_modes.len()).rev() {
         for (j, e) in MODE_TYPES.iter().copied().enumerate() {
             if e == cur_mode {
                 cur_mode = char_modes[i][j].unwrap();
-                result[i] = cur_mode;
+                remaining[i].write(cur_mode);
                 break;
             }
         }
+    }
+
+    unsafe {
+        result.set_len(char_modes.len());
     }
 
     result
