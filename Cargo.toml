@@ -1,9 +1,9 @@
 [package]
 name = "qrcode-segments-optimizer"
-version = "0.0.8"
+version = "0.0.9"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2021"
-rust-version = "1.62"
+rust-version = "1.70"
 publish = false
 repository = "https://github.com/magiclen/qrcode-segments-optimizer"
 homepage = "https://magiclen.org/qrcode-generator"
@@ -14,12 +14,12 @@ license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "data/unicode_to_qr_kanji.json"]
 
 [dependencies]
-qrcode-generator = "4.1.6"
+qrcode-generator = "5"
 url = "2"
 cow-utils = "0.1"
 
 [dependencies.validators]
-version = "0.24"
+version = "0.25"
 default-features = false
 features = ["derive", "email"]
 

@@ -1,4 +1,4 @@
 mod email;
 
 pub use email::*;
-pub use validators::EmailError;
+pub use validators::errors::EmailError;

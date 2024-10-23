@@ -38,7 +38,7 @@ use cow_utils::CowUtils;
 use models::Email;
 use qrcode_generator::{qrcodegen::Version, QRCodeError, QrCodeEcc, QrSegment};
 use url::Url;
-use validators::models::Host;
+use validators::{models::Host, prelude::*};
 
 /// Make segments from a string slice optimally.
 #[inline]
